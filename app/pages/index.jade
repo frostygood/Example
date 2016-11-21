@@ -1,6 +1,12 @@
+include ../blocks/title-screen/title-screen
+include ../blocks/text/text
+include ../blocks/title/title
+include ../blocks/hard-form/hard-form
+
 extends /blocks/layout-default/layout-default
 
 block head
-	- var pageTitle = 'Тестовый проект';
+	- var pageTitle = 'Test SmartCat';
 
 block content
+	+title-screen
