@@ -1,8 +1,16 @@
 include ../top-btn-group/top-btn-group
 include ../wrapper/wrapper
+include ../hard-form/hard-form
+include ../main-text/main-text
+include ../title/title
+include ../double/double
 
 mixin title-screen()
 	+b.title-screen
-		+e.image-bg
 		+top-btn-group
 		+wrapper
+			+double
+				+title
+				+main-text
+			+double
+				+hard-form
