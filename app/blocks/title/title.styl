@@ -1,12 +1,20 @@
 .title
 	display block
 	margin-top 126px
+	+below(767px)
+		margin-top 20px
+	+below(374px)
+		margin-left 21px
 
 	img
-		width 300px
+		width 100%
+		max-width 300px
+		min-width 135px
+		+below(767px)
+			max-width 135px
 
 	&__big
 		font-size 54px
 		color $sc-white
-		font-family 'Roboto', sans-serif 
+		font-family 'Roboto', sans-serif
 		font-weight 700

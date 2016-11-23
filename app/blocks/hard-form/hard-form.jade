@@ -1,3 +1,17 @@
 mixin hard-form()
-	+b.hard-form&attributes(attributes)
-		block
+	+b.hard-form
+		+e('span').title Start now. Its free!
+		+e('label').section
+			input(type='text', placeholder='Fill name')
+		+e('label').section-one-triple
+			input(type='text', placeholder='Phone')
+		+e('label').section-two-triple
+			input(type='text', placeholder='Company')
+		+e('label').section
+			input(type='text', placeholder='Email')
+		+e('label').section
+			input(type='text', placeholder='Password')
+		+e.button
+			input(type='submit', value='Sing Up') 
+		+e('span').text By clicking Sign up, you agree to our 
+			+e(href="#").link  Terms of Service
