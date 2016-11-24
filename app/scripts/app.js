@@ -11,11 +11,27 @@ $(() => {
         var form = $(this).closest('form'); //по зис попали на инпут, потом поднялись к ближайшему родителю и записали в переменную
         var input = $(this); //записали в переменную обращение к инпуту
 
-        const _check = function() { //в константу запихнули валидатор, чтобы его нельзя было изменить, и не вызывать когда нужно
+        $(this).on('checkInput keydown', function(_event) { //в константу запихнули валидатор, чтобы его нельзя было изменить, и не вызывать когда нужно
             var error = []; //создали массив для записи ошибок
-            var value = $(input).val().trim(); //записали в переменную содержимое текущего инпута без пробелов справа и слева
+						if (('callback' in config) && ('pre' in config.callback)) {
+							config.callback.pre(input, form, _event, error);
+						}
 
-            if (('maxLenght' in config) && (value.length > config.maxLenght.value)) { //если есть в конфиге есть свойство максЛенгхт, и выполняется сл.условие
+						var value = $(input).val().trim(); //записали в переменную содержимое текущего инпута без пробелов справа и слева
+
+						if (('pattern' in config)) { // если в конфиге есть свойство паттерн, то
+								var patterns = config.pattern; //занесли свойство в перменную
+								if (!(patterns instanceof Array)) { //если паттерн - это НЕ массив, то
+										patterns = [patterns]; //то превращаем паттерн в массив, чтобы можно было в будущем использовать несколько паттернов сразу
+								}
+								for (var i = 0; i < patterns.length; i++) { //проходим по массиву патернов по очереди по каждом паттерну, начиная с первого
+										var pattern = patterns[i]; //заносим в переменную
+										if (value.match(pattern.value)) { //проверили регулярное выражение из конкретного паттерна с содержимым инпута
+												error.push(pattern.message); //если совпало, то записали мессагу из паттерна в конец массива с эррорами
+										}
+								}
+						}
+						if (('maxLenght' in config) && (value.length > config.maxLenght.value)) { //если есть в конфиге есть свойство максЛенгхт, и выполняется сл.условие
                 error.push(config.maxLenght.message); //записали в конец массива месагу из масЛенгхт
             }
             if (('required' in config) && (!!value.length != config.required.value)) { //если есть рекваед(проверка на наличие заполнения) и он совпадает булом числового значения
@@ -24,29 +40,14 @@ $(() => {
                 error.push(config.minLenght.message); //записали в конец массива месагу из минЛенгхт
             }
 
-            if (('pattern' in config)) { // если в конфиге есть свойство паттерн, то
-                var patterns = config.pattern; //занесли свойство в перменную
-                if (!(patterns instanceof Array)) { //если паттерн - это НЕ массив, то
-                    patterns = [patterns]; //то превращаем паттерн в массив, чтобы можно было в будущем использовать несколько паттернов сразу
-                }
-                for (var i = 0; i < patterns.length; i++) { //проходим по массиву патернов по очереди по каждом паттерну, начиная с первого
-                    var pattern = patterns[i]; //заносим в переменную
-                    if (pattern.value.test(value)) { //проверили регулярное выражение из конкретного паттерна с содержимым инпута
-                        error.push(pattern.message); //если совпало, то записали мессагу из паттерна в конец массива с эррорами
-                    }
-                }
-            }
-
-            var isValid = error.length > 0; //если в массиве эрроров что-то есть, то записываем в переменную true , иначе false
-            $(config.target).text(error[error.length - 1]); //в класс указанный в свойстве таргет в конкретном конфиге записывается мессага из последнего элемента в массиве эрроров
-            $(input).toggleClass(config.classError, isValid); //на выбранном инпуте включился/выключился классЭррор в зависимсти от того, если в массиве эрроров что-то или нет
-            $(form).toggleClass(config.classError, isValid); //если есть ошибки, то вегаем на всю форму класс ошибки, чтобы стопиться в дальнейшем при попытке отправки формы
-        };
-
-        $(this).on('keyup', _check); //вешаем обработчик на событие отпускании кнопки
+            var isInvalid = error.length > 0; //если в массиве эрроров что-то есть, то записываем в переменную true , иначе false
+            $(config.target).text(isInvalid?error[error.length - 1]:''); //в класс указанный в свойстве таргет в конкретном конфиге записывается мессага из последнего элемента в массиве эрроров
+            $(input).toggleClass(config.classError, isInvalid); //на выбранном инпуте включился/выключился классЭррор в зависимсти от того, если в массиве эрроров что-то или нет
+            $(form).toggleClass(config.classError, isInvalid); //если есть ошибки, то вегаем на всю форму класс ошибки, чтобы стопиться в дальнейшем при попытке отправки формы
+        }); //вешаем обработчик на событие отпускании кнопки
 
         $(form).on('submit', function(_event) { //перехват события отправки формы, перед отправкой обрабатываем содержимое внутри
-            _check(); //принудительный запуск валидации
+            $(input).trigger('checkInput'); //принудительный запуск валидации
 
             if ($(this).hasClass(config.classError)) { //проверили наличие класса ошибки из конфига на ФОРМЕ
                 _event.preventDefault(); //отменяет действие по умолчанию (отправку формы, если есть класс ошибки)
@@ -72,7 +73,22 @@ $(() => {
             message: 'Введите телефонный номер в международном формате'
         },
         target: '.js-errorName',
-        classError: 'error-for-form'
+        classError: 'error-for-form',
+				callback: {
+					pre: function(_element, _form, _event, _error){
+						var value=$(_element).val().trim();
+/*var systemCodes=[7,8,17,18,13,82,16,36,35];
+console.log(_event.keyCode);
+if(systemCodes.indexOf(_event.keyCode)!==-1){
+
+}else*/ if(value.length==0 && (_event.keyCode==107 || _event.keyCode==187)){
+
+						}else if(!((_event.keyCode>=96 && _event.keyCode<=105) || (_event.keyCode>=48 && _event.keyCode<=57))){
+							_event.preventDefault();
+						}
+
+					}
+				}
     };
     // var configPass = {
     // 	maxLenght : 10,
