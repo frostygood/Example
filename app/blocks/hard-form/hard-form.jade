@@ -2,15 +2,20 @@ mixin hard-form()
 	+b.hard-form
 		+e('span').title Start now. Its free!
 		+e('label').section
-			input(type='text', placeholder='Fill name')
+			input(type='text', placeholder='Fill name', class='js-inputName')
+			+e.error-block.js-errorName
 		+e('label').section-one-triple
-			input(type='text', placeholder='Phone')
+			input(type='text', placeholder='Phone', class='js-inputPhone')
+			+e.error-block.js-errorPhone
 		+e('label').section-two-triple
-			input(type='text', placeholder='Company')
+			input(type='text', placeholder='Company', class='js-inputCompany')
+			+e.error-block.js-errorCompany
 		+e('label').section
-			input(type='text', placeholder='Email')
+			input(type='text', placeholder='Email', class='js-inputEmail')
+			+e.error-block.js-errorEmail
 		+e('label').section
-			input(type='text', placeholder='Password')
+			input(type='text', placeholder='Password', class='js-inputPass')
+			+e.error-block.js-errorPass
 		+e.button
 			input(type='submit', value='Sing Up') 
 		+e('span').text By clicking Sign up, you agree to our 

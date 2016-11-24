@@ -29,6 +29,9 @@
 			color $sc-normGrey
 			border-bottom 2px solid $sc-normGreen
 			padding-bottom 4px
+		&.error-for-form
+			border-bottom 2px solid red
+			padding-bottom 4px
 
 	input[type='submit']
 		display block
@@ -63,6 +66,16 @@
 		width 100%
 		margin-top 19px
 		padding-bottom 3px
+		position relative
+
+	&__error-block
+		position absolute
+		color red
+		font-size 11px
+		top 23px
+		left 0
+		&:empty
+			display none
 
 	&__section-one-triple
 		display inline-block
@@ -70,7 +83,8 @@
 		margin-top 19px
 		padding-bottom 3px
 		box-sizing border-box
-		padding-right 12px
+		padding-right 24px
+		position relative
 
 	&__section-two-triple
 		display inline-block
@@ -78,7 +92,7 @@
 		margin-top 19px
 		padding-bottom 3px
 		box-sizing border-box
-		padding-left 12px
+		position relative
 
 	&__button
 		display block
