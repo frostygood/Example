@@ -1,8 +1,8 @@
 mixin hard-form()
-	+b.hard-form
+	+b('form').hard-form
 		+e('span').title Start now. Its free!
 		+e('label').section
-			input(type='text', placeholder='Fill name', class='js-inputName')
+			input(type='text', placeholder='Full name', class='js-inputName')
 			+e.error-block.js-errorName
 		+e('label').section-one-triple
 			input(type='text', placeholder='Phone', class='js-inputPhone')
