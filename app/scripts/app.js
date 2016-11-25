@@ -15,8 +15,7 @@ $(() => {
             var error = []; //создали массив для записи ошибок
 						var value = $(input).val().trim(); //записали в переменную содержимое текущего инпута без пробелов справа и слева
 
-						if (('phoneNumbers' in config) && (config.phoneNumbers == true)) { // если в конфиге есть свойство дизнамбер, то
-								var numbers = config.phoneNumbers; //занесли свойство в перменную
+						if (('phoneNumbers' in config) && (config.phoneNumbers == true)) { // если в конфиге есть свойство фоннамбер, то
 								$(input).val(value.replace(/^\+|\D+/gi, '')); //удалять все символы кроме цифр
 								$(input).blur(function(){											//срабатывает при снятии фокуса
 									if ((value.substr(0,1) == 8)&&(value.length == 11)) {		//если первая цифра 8 и общая длина 11, то
@@ -25,6 +24,14 @@ $(() => {
 										$(input).val('+' + value); 														//иначе просто добавить плюсик
 									}
 								});
+						}
+
+						if (('validEmail' in config) && (config.validEmail.value == true)) { // если в конфиге есть свойство валидЭмейл, то
+								var emails = /^([\w\.\d-_]{2,4})+@[\w\.\d-_]+\.\w{2,4}$/i; //начало строки, английские буквы от одной до бесконечности + разрешенные символы, собака, опять буквы от одной до бесконечности + разрешенные символы, точка, буквы от двух до четырёх (если почта где-нибудь на .info), конец строки. Регистр букв не учитывается
+								console.log('вошли в волидацию почты')
+								if (!emails.test(value)) {
+									error.push(config.validEmail.message);
+								}
 						}
 
 						if (('pattern' in config)) { 						// если в конфиге есть свойство паттерн, то
@@ -66,40 +73,29 @@ $(() => {
     };
 
     var configName = {
-        maxLenght: {
-            value: 10,
-            message: 'больше ввести нельзя '
-        },
-        minLenght: {
-            value: 3,
-            message: 'меньше ввести нельзя '
-        },
-        required: {
-            value: true,
-            message: 'Пожалуйста, укажите имя и фамилию/Please specify your first and last name'
-        },
-        pattern: {
-            value: /^0/gim,
-            message: 'Введите телефонный номер в международном формате'
-        },
+        // maxLenght: {
+        //     value: 10,
+        //     message: 'больше ввести нельзя '
+        // },
+        // minLenght: {
+        //     value: 3,
+        //     message: 'меньше ввести нельзя '
+        // },
+        // required: {
+        //     value: true,
+        //     message: 'Пожалуйста, укажите имя и фамилию/Please specify your first and last name'
+        // },
+        // pattern: {
+        //     value: /^0/gim,
+        //     message: 'Введите телефонный номер в международном формате'
+        // },
         target: '.js-errorName',
         classError: 'error-for-form',
-				phoneNumbers: true
-// 				callback: {
-// 					pre: function(_element, _form, _event, _error){
-// 						var value=$(_element).val().trim();
-// /*var systemCodes=[7,8,17,18,13,82,16,36,35];
-// console.log(_event.keyCode);
-// if(systemCodes.indexOf(_event.keyCode)!==-1){
-//
-// }else*/ if(value.length==0 && (_event.keyCode==107 || _event.keyCode==187)){
-//
-// 						}else if(!((_event.keyCode>=96 && _event.keyCode<=105) || (_event.keyCode>=48 && _event.keyCode<=57))){
-// 							_event.preventDefault();
-// 						}
-//
-// 					}
-// 				}
+				// phoneNumbers: false,
+				validEmail: {
+            value: true,
+            message: 'Некорректный адрес электронной почты'
+        }
     };
     // var configPass = {
     // 	maxLenght : 10,
