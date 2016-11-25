@@ -47,7 +47,6 @@ $(() => {
 								}
 						}
 
-
 						if (('maxLenght' in config) && (value.length > config.maxLenght.value)) { //если есть в конфиге есть свойство максЛенгхт, и выполняется сл.условие
                 error.push(config.maxLenght.message); 																//записали в конец массива месагу из масЛенгхт
             }
@@ -73,55 +72,79 @@ $(() => {
     };
 
     var configName = {
-        // maxLenght: {
-        //     value: 10,
-        //     message: 'больше ввести нельзя '
-        // },
-        // minLenght: {
-        //     value: 3,
-        //     message: 'меньше ввести нельзя '
-        // },
-        // required: {
-        //     value: true,
-        //     message: 'Пожалуйста, укажите имя и фамилию/Please specify your first and last name'
-        // },
-        // pattern: {
-        //     value: /^0/gim,
-        //     message: 'Введите телефонный номер в международном формате'
-        // },
+			maxLenght: {
+					value: 100,
+					message: 'больше 100 символов ввести нельзя '
+			},
+			required: {
+					value: true,
+					message: 'Пожалуйста, укажите имя и фамилию/Please specify your first and last name'
+			},
         target: '.js-errorName',
         classError: 'error-for-form',
-				// phoneNumbers: false,
-				validEmail: {
-            value: true,
-            message: 'Некорректный адрес электронной почты'
-        }
     };
-    // var configPass = {
-    // 	maxLenght : 10,
-    // 	minLenght : 6,
-    // 	target : '.js-errorPass',
-    // 	classError : 'error-for-form'
-    // };
-    // var configPhone = {
-    // 	maxLenght : 10,
-    // 	target : '.js-errorPhone',
-    // 	classError : 'error-for-form'
-    // };
-    // var configCompany = {
-    // 	maxLenght : 10,
-    // 	minLenght : 2,
-    // 	target : '.js-errorCompany',
-    // 	classError : 'error-for-form'
-    // };
-    // var configEmail = {
-    // 	maxLenght : 18,
-    // 	target : '.js-errorEmail',
-    // 	classError : 'error-for-form'
-    // };
+
+    var configPass = {
+			maxLenght: {
+					value: 100,
+					message: 'больше 100 символов ввести нельзя '
+			},
+			minLenght: {
+					value: 6,
+					message: 'Пароль не может быть короче 6 символов'
+			},
+			required: {
+					value: true,
+					message: 'Введите пароль'
+			},
+    	target : '.js-errorPass',
+    	classError : 'error-for-form'
+    };
+
+    var configPhone = {
+			maxLenght: {
+					value: 100,
+					message: 'больше 100 символов ввести нельзя '
+			},
+			pattern: {
+					value: /^0/gim,
+					message: 'Введите телефонный номер в международном формате'
+			},
+			phoneNumbers: true,
+    	target : '.js-errorPhone',
+    	classError : 'error-for-form'
+    };
+    var configCompany = {
+			maxLenght: {
+					value: 100,
+					message: 'больше 100 символов ввести нельзя '
+			},
+			minLenght: {
+					value: 2,
+					message: 'Название компании не может быть короче 2 символов/The company name cannot be shorter than 2 symbols'
+			},
+			required: {
+					value: true,
+					message: 'Укажите название компании/Specify your company name'
+			},
+    	target : '.js-errorCompany',
+    	classError : 'error-for-form'
+    };
+    var configEmail = {
+			maxLenght: {
+					value: 318,
+					message: 'больше 318 символов ввести нельзя '
+			},
+			validEmail: {
+					value: true,
+					message: 'Некорректный адрес электронной почты'
+			}
+    	target : '.js-errorEmail',
+    	classError : 'error-for-form'
+    };
     $('.js-inputName').validateForm(configName);
-    // $('.js-inputPass').validateForm(configPass);
-    // $('.js-inputPhone').validateForm(configPhone);
-    // $('.js-inputCompany').validateForm(configCompany);
-    // $('.js-inputEmail').validateForm(configEmail);
+    $('.js-inputPass').validateForm(configPass);
+    $('.js-inputPhone').validateForm(configPhone);
+    $('.js-inputCompany').validateForm(configCompany);
+    $('.js-inputEmail').validateForm(configEmail);
 });
