@@ -1,5 +1,30 @@
-mixin advantage()
-	+b.advantage
-		+e('h3').title $0
-		+e('p').text Use industry-leading translation automation technologies without any 
-			b license payments
+mixin advantage(data)
+
+	-data = data || {}
+		
+	if (data.mod === 1 || !data.mod)
+		+b.advantage
+			+e('h3').title $0
+			+e('p').text Use industry-leading translation automation technologies without any 
+				b license payments
+
+	if (data.mod === 2 || !data.mod)
+		+b.advantage
+			+e('h3').title 15
+				+e('span').up-text %
+			+e('p').text Use industry-leading translation automation technologies without any 
+				b license payments
+				
+	if (data.mod === 3 || !data.mod)
+		+b.advantage
+			+e('h3').title 30
+				+e('span').down-text seconds
+			+e('p').text Use industry-leading translation automation technologies without any 
+				b license payments
+				
+	if (data.mod === 4 || !data.mod)
+		+b.advantage
+			+e('h3').title 50
+				+e('span').up-text %
+			+e('p').text Use industry-leading translation automation technologies without any 
+				b license payments

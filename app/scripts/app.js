@@ -1,6 +1,7 @@
 import svg4everybody from 'svg4everybody';
 import $ from 'jquery';
-// "use strict";
+
+"use strict";
 
 $(() => {
 	svg4everybody();
@@ -111,6 +112,10 @@ $(() => {
 			message: 'Введите телефонный номер в международном формате'
 		},
 		phoneNumbers: true,
+		required: {
+			value: true,
+			message: 'Введите номер телефона'
+		},
 		classTarget: '.js-errorPhone',
 		classError: 'error-for-form'
 	};

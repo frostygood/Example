@@ -5,13 +5,13 @@ include ../advantage/advantage
 mixin advantages()
 	+b.advantages
 		+wrapper
-			+fourth
-				+advantage
-			+fourth
-				+advantage
-			+fourth
-				+advantage
-			+fourth
-				+advantage
+			+fourth({mod: 1})
+				+advantage({mod: 1})
+			+fourth({mod: 1})
+				+advantage({mod: 2})
+			+fourth({mod: 1})
+				+advantage({mod: 3})
+			+fourth({mod: 1})
+				+advantage({mod: 4})
 			
 		
