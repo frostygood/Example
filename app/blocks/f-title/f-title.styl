@@ -1,0 +1,53 @@
+.f-title
+	display block
+	&::after
+		content ""
+		display table
+		clear both
+	+below(767px)
+		padding-top 20px
+
+	&__left-block
+		display inline-block
+	&__logo-footer
+		display inline-block
+		+below(767px)
+			display inline-block
+
+	&__mail
+		font-size 14px
+		color $sc-white
+		text-decoration none
+		font-weight 700
+		margin-left 25px
+		&:hover
+			color $sc-liteGreen
+			transition 0.3s
+		+below(980px)
+			margin-top 15px
+			display block
+			margin-left 0
+			font-weight 500
+
+	&__group-link
+		display inline-block
+		float right
+		+below(640px)
+			display block
+			float none
+
+	&__link
+		margin-left 25px
+		color $sc-white
+		text-transform uppercase
+		font-size 15px
+		text-decoration none
+		font-weight 700
+		transition 0.3s
+		&:hover
+			color $sc-liteGreen
+		+below(640px)
+			margin-top 10px
+			font-weight 500
+			display block
+			margin-left 0
