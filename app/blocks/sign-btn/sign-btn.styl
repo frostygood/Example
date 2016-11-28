@@ -1,0 +1,20 @@
+.sign-btn
+	display block
+	margin-bottom 42px
+	+below(980px)
+		margin-bottom 20px
+		text-align center
+
+	&__btn
+		display inline-block
+		text-decoration none
+		font-size 18px
+		color $sc-white
+		border-radius 2px
+		padding 9px 20px
+		transition 0.3s
+		background: $sc-normGreen
+		&:hover
+			background $sc-liteGreen
+		&:focus
+			background $sc-hardGreen

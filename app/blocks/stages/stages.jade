@@ -1,0 +1,20 @@
+include ../wrapper/wrapper
+include ../fourth/fourth
+include ../one/one
+include ../stage/stage
+include ../title-stages/title-stages
+
+mixin stages()
+	+b.stages
+		+wrapper
+			+one({mod: 1})
+				+title-stages
+			+one({mod: 2})
+				+fourth({mod: 2})
+					+stage({mod: 1})
+				+fourth({mod: 2})
+					+stage({mod: 2})
+				+fourth({mod: 2})
+					+stage({mod: 3})
+				+fourth({mod: 2})
+					+stage({mod: 4})

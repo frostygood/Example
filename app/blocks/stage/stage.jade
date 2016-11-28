@@ -1,0 +1,23 @@
+mixin stage(data)
+
+	-data = data || {}
+		
+	if (data.mod === 1 || !data.mod)
+		+b.stage
+			+e('span').number 1
+			+e('p').text Create a new project and assign tasks for each stage of the workflow
+
+	if (data.mod === 2 || !data.mod)
+		+b.stage
+			+e('span').number 2
+			+e('p').text Your team translates in a state-of-the art CAT tool 
+
+	if (data.mod === 3 || !data.mod)
+		+b.stage
+			+e('span').number 3
+			+e('p').text Manage the translation process online
+
+	if (data.mod === 4 || !data.mod)
+		+b.stage_none-after
+			+e('span').number 4
+			+e('p').text Receive translations and make payments

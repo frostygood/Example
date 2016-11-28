@@ -1,0 +1,46 @@
+.stage
+	display block
+	margin-top 85px
+	position relative
+	margin-bottom 54px
+	+below(767px)
+		margin-top 8px
+		margin-bottom 5px
+
+	&:after
+		position absolute
+		top -30px
+		right -30px
+		display block
+		width 70px
+		height 17px
+		content ''
+		background: url(/assets/images/arrow.png) no-repeat;
+		+below(767px)
+			right 0px
+			width 0px
+	&_none-after
+		&:after
+			display none
+
+	&__number
+		display inline-block
+		font-size 60px
+		color $sc-white
+		width 20%
+		vertical-align top
+		+below(767px)
+			width 20%
+
+	&__text
+		display inline-block
+		width 80%
+		font-size 14px
+		color $sc-white
+		padding-right 5%
+		box-sizing border-box
+		vertical-align top
+		line-height 1.43
+		+below(767px)
+			margin-top 10px
+			width 80%
