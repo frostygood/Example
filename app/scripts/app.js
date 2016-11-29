@@ -4,10 +4,6 @@ import $ from 'jquery';
 "use strict";
 
 $(() => {
-	svg4everybody();
-});
-
-$(() => {
 	$.fn.validateForm = function (config) {//создаем виджет
 		var form = $(this).closest('form'); //по зис попали на инпут, потом поднялись к ближайшему родителю и записали в переменную
 		var input = $(this); //записали в переменную обращение к инпуту
@@ -28,7 +24,7 @@ $(() => {
 			}
 
 			if (('validEmail' in config) && (config.validEmail.value == true)) { //если в конфиге есть свойство валидЭмейл, то
-				var emails = /^[\w\-]{1,64}@[\w\-]{1,253}\.[\w\-]{2,6}$/gim; //начало строки, английские буквы от одной до бесконечности + разрешенные символы, собака, опять буквы от одной до бесконечности + разрешенные символы, точка, буквы от двух до четырёх (если почта где-нибудь на .info), конец строки. Регистр букв не учитывается
+				var emails = /^[\w\-\.]{1,64}@[\w\-]{1,253}\.[\w\-]{2,6}$/gim; //начало строки, английские буквы от одной до бесконечности + разрешенные символы, собака, опять буквы от одной до бесконечности + разрешенные символы, точка, буквы от двух до четырёх (если почта где-нибудь на .info), конец строки. Регистр букв не учитывается
 				console.log('вошли в валидацию почты')
 				if (!emails.test(value)) {
 					error.push(config.validEmail.message);
@@ -153,3 +149,37 @@ $(() => {
 	$('.js-inputCompany').validateForm(configCompany);
 	$('.js-inputEmail').validateForm(configEmail);
 });
+
+$(() => {
+	svg4everybody();
+	var query = getUrlVars(); //вызываем функцию получения перменных
+	var varialbes={ //сказали так круче , порефакторил
+		'.js-inputName':'name',
+			'.js-inputPhone':'phone',
+				'.js-inputCompany':'co',
+					'.js-inputEmail':'email'
+	};
+for(var i in varialbes){
+	if(typeof query[varialbes[i]]!=='undefined'){
+		$(i).val(query[varialbes[i]]).trigger('keyup');
+	}
+}
+	// if (Object.keys(query).length > 0) { //если в урл были найдены данные для заполнения формы, то она заполняется (keys получает все ключи объекта)
+	// 	$('.js-inputName').val(query['firstAndLastName']).trigger('keyup'); //записываем значение но ключу name и вызываем событие "клавиша вверх", чтобы запустить валидацию
+	// 	$('.js-inputPhone').val(query['phone']).trigger('keyup');
+	// 	$('.js-inputCompany').val(query['company']).trigger('keyup');
+	// 	$('.js-inputEmail').val(query['email']).trigger('keyup');
+	// 	$('.js-inputPass').val(query['password']).trigger('keyup');
+  // }
+});
+
+function getUrlVars() { //инициализировали функцию получения переменных из урл строки
+    var vars = {}; //создали объект для хранения переменных из урл
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { //выковырнули все переменные из урла (тут копипаст)
+        vars[key] = decodeURIComponent(value);//записывает в массив с ключем key и декодирует русские символы
+				//   url /?phone=12345&email=test@mail.ru
+				// vars = {phone: 12345, email: test@mail.ru}
+				//это шобы не забыть
+    });
+    return vars; //возвращаем заполненный объект
+}
