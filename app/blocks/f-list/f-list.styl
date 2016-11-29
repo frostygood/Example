@@ -14,16 +14,20 @@
 	li
 		margin-top 10px
 		+below(900px)
-			margin-top 5px
+			margin-top 7px
 
 	&__title
 		color $sc-frontFooter
 		font-size 18px
+		+below(900px)
+			color $sc-white
 
 	&__link
 		color $sc-frontFooter
 		text-decoration none
 		font-size 13px
 		transition 0.5s
+		+below(900px)
+			color $sc-white
 		&:hover
-			color $sc-liteGreen
+			text-decoration underline

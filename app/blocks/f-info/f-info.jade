@@ -1,3 +1,25 @@
 mixin f-info()
-	+b.f-info&attributes(attributes)
-		block
+	+b.f-info
+		+e.line
+			+e('span').text © 2016 SmartCAT All right reserved
+			+e.mixpanel
+				img(src="./assets/images/badge_light.png", alt="")
+		+e.line-two
+			+e.f-block
+				+e.pay
+					img(src="./assets/images/mastercard.png", alt="")
+				+e.pay
+					img(src="./assets/images/maestro.png", alt="")
+				+e.pay
+					img(src="./assets/images/visa.png", alt="")
+				+e.pay
+					img(src="./assets/images/visa-electron.png", alt="")
+			+e.f-block
+				+e.info-text
+					+e('span').info Исследования осуществляются 
+						br 
+						|	ООО "СмартКАТ" при грантовой поддержке
+						br 
+						|	Фонда "Сколково"
+				+e(href='#').sk
+					img(src="./assets/images/sk_ru.jpeg", alt="")
