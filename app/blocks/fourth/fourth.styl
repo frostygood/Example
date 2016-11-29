@@ -1,0 +1,19 @@
+.fourth
+	display inline-block
+	width 24.2%
+	box-sizing border-box
+	vertical-align top
+	margin-right 0.8%
+	+below(767px)
+		width 41%
+		margin-right 9%
+	+below(374px)
+		width 47%
+		margin-right 3%
+	&:last-child
+		margin-right 0
+
+	&_stages
+		+below(500px)
+			display block
+			width 100%

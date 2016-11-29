@@ -1,0 +1,15 @@
+include ../double/double
+include ../f-title/f-title
+include ../f-list/f-list
+include ../social/social
+include ../f-info/f-info
+
+mixin footer()
+	+b.footer
+		+f-title
+		+double
+			+f-list({mod: 1})
+			+f-list({mod: 2})
+		+double
+			+social
+			+f-info

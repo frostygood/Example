@@ -5,7 +5,6 @@
 	margin-right 0
 	width 100%
 	max-width 420px
-	min-width 300px
 	padding 26px
 	height 344px
 	border-radius 2px
@@ -24,6 +23,7 @@
 		color $sc-liteGrey
 		padding-bottom 5px
 		border none
+		color $sc-fontBlackPlus
 		border-bottom 1px solid $sc-liteGrey
 		&:focus
 			color $sc-normGrey
@@ -34,14 +34,12 @@
 			padding-bottom 4px
 
 	input[type='submit']
-		display block
+		display inline-block
 		border none
-		width 153px
-		height 40px
-		margin 0 auto
+		width auto
+		padding 9px 47px
 		font-size 18px
 		color $sc-white
-		padding-bottom 0
 		border-radius 2px
 		background $sc-normGreen
 		transition 0.3s
@@ -55,6 +53,7 @@
 		font-weight 300
 		color $sc-fontBlack
 		display block
+		font-family 'Roboto Light', sans-serif
 		text-align center
 		transition 0.7s
 		+below(767px)
@@ -96,9 +95,9 @@
 
 	&__button
 		display block
-		width 100%
 		margin-top 24px
 		padding-bottom 3px
+		text-align center
 
 	&__text
 		display block

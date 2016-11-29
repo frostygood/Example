@@ -1,0 +1,16 @@
+include ../wrapper/wrapper
+include ../sing-pict/sing-pict
+include ../two-triple/two-triple
+include ../sign-info/sign-info
+include ../sign-btn/sign-btn
+
+mixin sign()
+	+b.sign
+		+wrapper
+			+sing-pict
+			+two-triple
+				+sign-info({mod: 1})
+				+sign-info({mod: 2})
+				+sign-info({mod: 3})
+				+sign-info({mod: 4})
+				+sign-btn

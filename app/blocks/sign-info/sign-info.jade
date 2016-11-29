@@ -1,0 +1,23 @@
+mixin sign-info(data)
+
+	-data = data || {}
+		
+	if (data.mod === 1 || !data.mod)
+		+b.sign-info
+			+e.title Efficient collaboration
+			+e.text Any number of users can work on your project in real time, with full access to relevant glossaries and TM resources. For instance, editors can correct translation segments on the fly without waiting for translators to deliver an entire file. As a result, you significantly speed up turnaround times, while receiving texts that are stylistically and terminologically consistent.
+			
+	if (data.mod === 2 || !data.mod)
+		+b.sign-info
+			+e.title Convenient payments
+			+e.text SmartCAT will allow for the centralized management of accounting and payments to translators. Project managers no longer need to track and monitor payments by hand.
+			
+	if (data.mod === 3 || !data.mod)
+		+b.sign-info
+			+e.title Security
+			+e.text All projects are protected in your secure account. Information is encrypted — a major advantage over e-mail. Only people with the right credentials can access your data. 
+			
+	if (data.mod === 4 || !data.mod)
+		+b.sign-info._m-to-btm
+			+e.title Support for more than 30 formats, including PDF files and scans
+			+e.text SmartCAT has built-in advanced OCR technologies. No need to reformat or install extra software for handling non-editable formats.

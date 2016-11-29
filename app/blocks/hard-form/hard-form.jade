@@ -1,22 +1,24 @@
 mixin hard-form()
-	+b('form').hard-form
-		+e('span').title Start now. Its free!
-		+e('label').section
-			input(type='text', placeholder='Full name', class='js-inputName')
-			+e.error-block.js-errorName
-		+e('label').section-one-triple
-			input(type='text', placeholder='Phone', class='js-inputPhone')
-			+e.error-block.js-errorPhone
-		+e('label').section-two-triple
-			input(type='text', placeholder='Company', class='js-inputCompany')
-			+e.error-block.js-errorCompany
-		+e('label').section
-			input(type='text', placeholder='Email', class='js-inputEmail')
-			+e.error-block.js-errorEmail
-		+e('label').section
-			input(type='text', placeholder='Password', class='js-inputPass')
-			+e.error-block.js-errorPass
-		+e.button
-			input(type='submit', value='Sing Up') 
-		+e('span').text By clicking Sign up, you agree to our 
-			+e(href="#").link  Terms of Service
+	+b.hard-form
+		form(action="https://smartcat.ai/Registration/Index", method="post")
+			input(type='hidden', name='accountType', value='1')
+			+e('span').title Start now. Its free!
+			+e('label').section
+				input(type='text', name="firstAndLastName", placeholder='Full name', class='js-inputName')
+				+e.error-block.js-errorName
+			+e('label').section-one-triple
+				input(type='text', name="phone", placeholder='Phone', class='js-inputPhone')
+				+e.error-block.js-errorPhone
+			+e('label').section-two-triple
+				input(type='text', name="company", placeholder='Company', class='js-inputCompany')
+				+e.error-block.js-errorCompany
+			+e('label').section
+				input(type='text', name="email", placeholder='Email', class='js-inputEmail')
+				+e.error-block.js-errorEmail
+			+e('label').section
+				input(type='password', name="password", placeholder='Password', class='js-inputPass')
+				+e.error-block.js-errorPass
+			+e.button
+				input(type='submit', value='Sing Up') 
+			+e('span').text By clicking Sign up, you agree to our 
+				+e(href="#").link  Terms of Service
